@@ -11,14 +11,8 @@ const connectDB = async () => {
     console.log('MongoDB connected successfully!');
 
     const db = mongoose.connection.db;
-
-    // Check if the database is the expected one
-    console.log('Database:', db.databaseName);
-
-    // Check if the collection exists
     const collections = await db.listCollections().toArray();
     const collectionNames = collections.map(col => col.name);
-    console.log('Collections:', collectionNames);
 
     if (!collectionNames.includes('food_item')) {
       throw new Error('Collection "food_item" does not exist.');
@@ -29,8 +23,6 @@ const connectDB = async () => {
 
     if (data.length === 0) {
       console.log('No data found in the collection.');
-    } else {
-      console.log('Fetched data:', data);
     }
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
