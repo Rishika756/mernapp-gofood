@@ -53,5 +53,3 @@ router.post("/loginuser",[
       res.json({ success: false });
     }
   });
-
-module.exports = router;
